@@ -1,57 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int zd1()
-{
-    int a1, a2, b1, b2, c1, c2;
-    printf("god mesyac i den pervogo cheloveka\n");
-    scanf("%d%d%d", &a1, &b1, &c1);
-    printf("god mesyac i den vtorogo cheloveka\n");
-    scanf("%d%d%d", &a2, &b2, &c2);
-    if ((a1 - a2)*10000 + (b1-b2)*1000 + (c1-c2)*10 > 0)
-        printf("perviy starshe");
-    else
-        printf("vtoroy starshe");
-
-    return 0;
-}
-
-
 int zd2()
 {
-    float x, y;
-    printf("vvedite x, y");
-    scanf("%f%f", &x, &y);
-    if (((x <= 2) || (y <= 2)) && (abs(y) > 2 - abs(x)))
-        printf("lezhit v 1 figure\n");
-    else
-        printf("NE lezhit v 1 figure\n");
-    if (((x <= 2) || (y <= 2)) && (y*y > 4 - x*x))
-        printf("lezhit vo 2 figure\n");
-    else
-        printf("NE lezhit vo 2 figure\n");
-
-    return 0;
-}
-
-
-int zd3()
-{
-    float y;
-    scanf("%f", &y);
-
-    int x = (int)y;
-
-    if (x < 0)
+    int a, b, c, n, x, i;
+    printf("vvedite n\n");
+    scanf("%d", &n);
+    a = 0;
+    b = 1;     //начальные данные
+    c = 3;
+    printf("%d\n", a);
+    printf("%d\n", b);
+    printf("%d\n", c);
+    for (i = 3; i <= n; i++)
     {
-        printf("0");
-        return 0;
-    }
+        x = a+c;
+        printf("%d\n", x);
+        a = b;
+        b = c;
+        c = x;
 
-    if (x % 2 == 0)
-        printf("1");
-    else
-        printf("-1");
+    }
 
     return 0;
 }
@@ -59,23 +28,25 @@ int zd3()
 
 int zd4()
 {
-    float a1, a2, b1, b2, c1, c2, x;
-    printf("vvedite storoni 1 treugolnika\n");
-    scanf("%f%f%f", &a1, &b1, &c1);
-    printf("vvedite storoni 2 treugolnika\n");
-    scanf("%f%f%f", &a2, &b2, &c2);
-    if (a1 < b1) { x = a1; a1 = b1; b1 = x; }
-    if (a1 < c1) { x = a1; a1 = c1; c1 = x; }
-    if (b1 < c1) { x = b1; b1 = c1; c1 = x; }
+    int n, s, x;
+    printf("vvedite n\n");
+    scanf("%d", &n);
+    s = n;
+    while (s >= 10)
+    {
+        s = 0;
+        while (n >= 10)
+        {
+            x = n % 10;
+            s += x;
+            x = n / 10;
+            n = x;
+        }
+        s += n;
+        n = s;
+    }
 
-    if (a2 < b2) { x = a2; a2 = b2; b2 = x; }
-    if (a2 < c2) { x = a2; a2 = c2; c2 = x; }
-    if (b2 < c2) { x = b2; b2 = c2; c2 = x; }
-
-    if (((a1/a2) == (b1/b2)) && ((b1/b2) == (c1/c2)))
-        printf("podobni");
-    else
-        printf("NE podobni");
+    printf("%d", s);
 
     return 0;
 }
@@ -83,21 +54,71 @@ int zd4()
 
 int zd5()
 {
-    int x;
-    scanf("%d", &x);
-    if ((x % 4 == 0) && ((x % 100 != 0) || (x % 400 == 0)))
-        printf("visokosniy");
-    else
-        printf("NE visokosniy");
+    int n, i, st;
+    printf("vvedite n\n");
+    scanf("%d", &n);
+    i = 2;
+    while (n > 1)
+    {
+        st = 0;
+        while(n % i == 0)
+        {
+            n /= i;
+            st += 1;
+        }
+        if (st != 0)
+            printf("%d^%d   ", i, st);
+        i ++;
+    }
+
+
+    return 0;
+}
+
+
+int zd6()
+{
+    int n, i, s;
+    s = 0;
+    printf("vvedite n\n");
+    scanf("%d", &n);
+    for (i = 2*(n*(n-1)/2 + 1) - 1; i <= 2*(n*(n+1)/2 + 1) - 3; i += 2)
+    {
+        printf("%d  ", i);
+        s += i;
+    }
+    printf("\n%d", s);
+
+    return 0;
+}
+
+
+int zd7()
+{
+    int n, x;
+    printf("vvedite n\n");
+    scanf("%d", &n);
+    x = 0;
+    while(n > 1)
+    {
+        x += n % 2;
+        n /= 2;
+    }
+    x += n;
+    printf("%d", x);
+
+    return 0;
 }
 
 int main()
 {
-    //zd1();
+
     //zd2();
-    //zd3();
     //zd4();
-    //zd5();
+    zd5();
+    //zd6();
+    //zd7();
+
 
     return 0;
 }
